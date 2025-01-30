@@ -58,5 +58,8 @@ jobs:
         with:
           app-name: 'sn-node-nextapp'
           slot-name: 'Production'
-          package: .
+          package: next.zip
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8F96A49DB7454BA789356F874A1F1BBD }}
+      
+      - name: Delete zip file
+          run:rm next.zip

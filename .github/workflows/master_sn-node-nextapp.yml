@@ -12,6 +12,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read #This is required for actions/checkout
 
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +21,7 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '20.x'
+          node-version: '18.x'
 
       - name: npm install, build, and test
         run: |
@@ -58,8 +60,5 @@ jobs:
         with:
           app-name: 'sn-node-nextapp'
           slot-name: 'Production'
-          package: next.zip
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8F96A49DB7454BA789356F874A1F1BBD }}
-      
-      - name: Delete zip file
-          run:rm next.zip
+          package: .
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_35776B04101C48888533D78396116328 }}
